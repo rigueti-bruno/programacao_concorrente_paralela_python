@@ -18,7 +18,7 @@ class WikiWorker():
         table = soup.find(id='constituents') # Encontra a tabela com os simbolos das empresas
         table_rows = table.find_all('tr') # Encontra todas as linhas da tabela
         for table_row in table_rows[1:]: # Ignora a primeira linha (cabeçalho)
-            symbol = table_row.find_all('td').text.strip() # Extrai o simbolo da empresa
+            symbol = table_row.find('td').text.strip('\n') # Extrai o simbolo da empresa
             yield symbol # Retorna o simbolo como um gerador
-            
-    yeld from self._extract_company_symbols(response.text) # Extrai os simbolos das empresas da pagina HTML
+
+        yield from self._extract_company_symbols(response.text) # Extrai os simbolos das empresas da pagina HTML
